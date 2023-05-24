@@ -159,7 +159,7 @@ require_once("close.php");
                 // Supprimez l'alerte toast après quelques secondes
                 setTimeout(function() {
                     toast.remove();
-                }, 3000);
+                }, 2500);
             }
         </script>
     <?php
