@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_POST) {
     if (isset($_POST["id"]) && isset($_POST["date_changement"]) && isset($_POST["etage"]) && isset($_POST["position"]) && isset($_POST["prix_ampoule"])) {
         require_once("connect.php");
@@ -21,9 +22,15 @@ if ($_POST) {
         $query->execute();
         require_once("close.php");
         setlocale(LC_TIME, 'fr_FR.UTF-8'); // Définit la locale en français
+
+        // Définir les variables de session pour l'alerte toast de modification enregistrée
+        $_SESSION["toast_message"] = "Modification enregistrée";
+        $_SESSION["toast_type"] = "success";
+
         header("Location: historique.php");
     }
 }
+
 
 // sert a aller chercher les informations 
 $date_changement = ""; // Initialisation avec une valeur par défaut

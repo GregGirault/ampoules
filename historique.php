@@ -2,16 +2,16 @@
 session_start();
 if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {  // isset($_SESSION["authenticated"]) : Cela vérifie si la clé "authenticated" existe dans la variable superglobale $_SESSION. $_SESSION est un tableau associatif en PHP utilisé pour stocker des données de session.
 
-// !isset($_SESSION["authenticated"]) : L'opérateur ! (négation) inverse le résultat de isset($_SESSION["authenticated"]). Ainsi, si la clé "authenticated" n'existe pas dans $_SESSION, cette expression sera évaluée à true.
+    // !isset($_SESSION["authenticated"]) : L'opérateur ! (négation) inverse le résultat de isset($_SESSION["authenticated"]). Ainsi, si la clé "authenticated" n'existe pas dans $_SESSION, cette expression sera évaluée à true.
 
- // $_SESSION["authenticated"] !== true : Cela vérifie si la valeur associée à la clé "authenticated" dans $_SESSION est différente de true. Plus précisément, !== est un opérateur de comparaison strict qui compare les valeurs et les types des deux opérandes. Si la valeur n'est pas strictement égale à true, cette expression sera évaluée à true.
+    // $_SESSION["authenticated"] !== true : Cela vérifie si la valeur associée à la clé "authenticated" dans $_SESSION est différente de true. Plus précisément, !== est un opérateur de comparaison strict qui compare les valeurs et les types des deux opérandes. Si la valeur n'est pas strictement égale à true, cette expression sera évaluée à true.
 
-// En combinant les deux parties de la condition avec l'opérateur logique || (ou), nous obtenons :
+    // En combinant les deux parties de la condition avec l'opérateur logique || (ou), nous obtenons :
 
-// (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) : Si l'une des deux conditions est vraie, c'est-à-dire si la clé "authenticated" n'existe pas dans $_SESSION ou si sa valeur n'est pas strictement égale à true, alors cette condition globale sera évaluée à true.
-// En résumé, cette condition vérifie si l'utilisateur n'est pas authentifié. Si la condition est vraie, cela signifie que l'utilisateur n'est pas authentifié et le code à l'intérieur du bloc conditionnel sera exécuté.
+    // (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) : Si l'une des deux conditions est vraie, c'est-à-dire si la clé "authenticated" n'existe pas dans $_SESSION ou si sa valeur n'est pas strictement égale à true, alors cette condition globale sera évaluée à true.
+    // En résumé, cette condition vérifie si l'utilisateur n'est pas authentifié. Si la condition est vraie, cela signifie que l'utilisateur n'est pas authentifié et le code à l'intérieur du bloc conditionnel sera exécuté.
 
-// L'utilisateur n'est pas authentifié, rediriger vers la page de connexion
+    // L'utilisateur n'est pas authentifié, rediriger vers la page de connexion
     header("Location: index.php");
     exit();
 }
@@ -130,6 +130,37 @@ require_once("close.php");
                     onClick: function() {}
                 }).showToast();
             });
+        </script>
+        <script>
+            // Vérifiez si la variable de session toast_message existe
+            <?php if (isset($_SESSION["toast_message"]) && isset($_SESSION["toast_type"])) : ?>
+                // Récupérez les valeurs de la variable de session
+                var toastMessage = "<?php echo $_SESSION['toast_message']; ?>";
+                var toastType = "<?php echo $_SESSION['toast_type']; ?>";
+
+                // Affichez l'alerte toast
+                showToast(toastMessage, toastType);
+
+                // Supprimez les variables de session
+                <?php unset($_SESSION["toast_message"]); ?>
+                <?php unset($_SESSION["toast_type"]); ?>
+            <?php endif; ?>
+
+            // Fonction pour afficher l'alerte toast
+            function showToast(message, type) {
+                // Créez l'élément de l'alerte toast
+                var toast = document.createElement("div");
+                toast.className = "toast " + type;
+                toast.textContent = message;
+
+                // Ajoutez l'alerte toast à la page
+                document.body.appendChild(toast);
+
+                // Supprimez l'alerte toast après quelques secondes
+                setTimeout(function() {
+                    toast.remove();
+                }, 3000);
+            }
         </script>
     <?php
         // Supprimer les variables de la session après avoir affiché le toast
