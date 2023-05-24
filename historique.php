@@ -111,7 +111,7 @@ require_once("close.php");
             document.addEventListener('DOMContentLoaded', function() {
                 Toastify({
                     text: "<?php echo $_SESSION["toast_message"]; ?>",
-                    duration: 2500,
+                    duration: 3000,
                     destination: "https://github.com/apvarun/toastify-js",
                     newWindow: true,
                     close: true,
@@ -125,6 +125,8 @@ require_once("close.php");
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
+                        border:"1px solid white",
+                        opacity: "0.95"
 
                     },
                     onClick: function() {}
@@ -159,7 +161,7 @@ require_once("close.php");
                 // Supprimez l'alerte toast après quelques secondes
                 setTimeout(function() {
                     toast.remove();
-                }, 2500);
+                }, 3000);
             }
         </script>
     <?php

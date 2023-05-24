@@ -40,7 +40,7 @@ table {
 }
 
 thead th {
-  background-color: #333;
+  background-color: #333333;
   color: #fff;
   padding: 10px;
   text-align: center;
@@ -356,7 +356,8 @@ input[type="text"]::placeholder {
 }
 
 .pagination-link:hover {
-  background-color: #8888885b;
+  background-color: #333;
+  color: #fff;
 }
 
 .pagination-item.disabled .pagination-link {
