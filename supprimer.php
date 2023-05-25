@@ -21,8 +21,9 @@ if ($_GET && isset($_GET['id'])) {
         $query->bindValue(":id", $id, PDO::PARAM_INT);
         $query->execute();
 
-        $_SESSION["toast_message"] = "Supprimé avec succès";
+        $_SESSION["toast_message"] = "Ampoule  $id  supprimée avec succès";
         $_SESSION["toast_type"] = "success";
+       
     }
 }
 

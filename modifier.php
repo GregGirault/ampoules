@@ -63,7 +63,7 @@ if (isset($_GET["id"]) && !empty($_GET['id'])) {
 </head>
 
 <body>
-    <h1 class="titre-modifier">Modification du changement d'ampoule en date du <?= $date_changement . " <br> au " . $changement["etage"] . " à la position " . $changement["position"] . " au prix de " . $changement["prix_ampoule"] . " TTC " ?></h1>
+    <h1 class="titre-modifier">Modification du changement d'ampoule n° <?= $id . "<br> du " . $date_changement ?></h1>
     <form method="post">
         <div>
             <label for="date_changement">Date du changement</label>
