@@ -133,37 +133,7 @@ require_once("close.php");
                 }).showToast();
             });
         </script>
-        <script>
-            // Vérifiez si la variable de session toast_message existe
-            <?php if (isset($_SESSION["toast_message"]) && isset($_SESSION["toast_type"])) : ?>
-                // Récupérez les valeurs de la variable de session
-                var toastMessage = "<?php echo $_SESSION['toast_message']; ?>";
-                var toastType = "<?php echo $_SESSION['toast_type']; ?>";
-
-                // Affichez l'alerte toast
-                showToast(toastMessage, toastType);
-
-                // Supprimez les variables de session
-                <?php unset($_SESSION["toast_message"]); ?>
-                <?php unset($_SESSION["toast_type"]); ?>
-            <?php endif; ?>
-
-            // Fonction pour afficher l'alerte toast
-            function showToast(message, type) {
-                // Créez l'élément de l'alerte toast
-                var toast = document.createElement("div");
-                toast.className = "toast " + type;
-                toast.textContent = message;
-
-                // Ajoutez l'alerte toast à la page
-                document.body.appendChild(toast);
-
-                // Supprimez l'alerte toast après quelques secondes
-                setTimeout(function() {
-                    toast.remove();
-                }, 3000);
-            }
-        </script>
+       
     <?php
         // Supprimer les variables de la session après avoir affiché le toast
         unset($_SESSION["toast_message"]);

@@ -481,6 +481,10 @@ a.deconnexion-link:active {
   font-weight: bold;
 }
 
+.titre-modifier{
+    font-size: 24px;
+  }
+
 /* CSS index.php */
 body {
   font-family: Arial, sans-serif;
@@ -602,6 +606,7 @@ h2 {
   color: #aaa4a4;
 }
 
+
 /* bouton de confirmation (modifier/supprimer) */
 .confirmation {
   position: fixed;
@@ -636,6 +641,11 @@ h2 {
 @media screen and (max-width: 919px) {
   h1 {
     font-size: 24px;
+  }
+
+  .titre-modifier{
+    font-size: 19px;
+    text-align: center;
   }
 
   .titre-principal {
@@ -792,6 +802,11 @@ h2 {
   input[type="text"]:focus {
     border-color: #555;
     outline: none;
+  }
+
+.titre-modifier{
+    font-size: 15px;
+    text-align: center;
   }
 
   .btn-modif {
@@ -959,4 +974,8 @@ h2 {
     font-size: 13px;
     color: #bbb5b5;
   }
+
+  .pagination-link {
+  font-size: 13px;
+}
 }

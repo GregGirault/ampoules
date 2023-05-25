@@ -23,11 +23,10 @@ if ($_POST) {
         require_once("close.php");
         setlocale(LC_TIME, 'fr_FR.UTF-8'); // Définit la locale en français
 
-        // Définir les variables de session pour l'alerte toast de modification enregistrée
-        $_SESSION["toast_message"] = "Modification enregistrée";
-        $_SESSION["toast_type"] = "success";
+        $_SESSION["modification_success"] = true; // Ajout d'une variable de session pour vérifier si la modification a été effectuée avec succès
 
         header("Location: historique.php");
+        exit();
     }
 }
 
@@ -48,6 +47,7 @@ if (isset($_GET["id"]) && !empty($_GET['id'])) {
     require_once("close.php");
 } else {
     header("Location: historique.php");
+    exit();
 }
 ?>
 
@@ -59,16 +59,16 @@ if (isset($_GET["id"]) && !empty($_GET['id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>changement d'ampoule</title>
+    <title>Modification du changement d'ampoule</title>
 </head>
 
 <body>
-    <h1>Modification du changement d'ampoule en date du <?= $date_changement . " <br> au " . $changement["etage"] . " à la position " . $changement["position"] . " au prix de " . $changement["prix_ampoule"] . " TTC " ?></h1>
+    <h1 class="titre-modifier">Modification du changement d'ampoule en date du <?= $date_changement . " <br> au " . $changement["etage"] . " à la position " . $changement["position"] . " au prix de " . $changement["prix_ampoule"] . " TTC " ?></h1>
     <form method="post">
         <div>
             <label for="date_changement">Date du changement</label>
             <input type="date" name="date_changement" id="dates" value="<?= $changement['date_changement'] ?>">
-            <label for="etage">Etage</label>
+            <label for="etage">Étage</label>
             <select name="etage" id="etage" required>
                 <option value="1er Etage" <?php if ($changement['etage'] == '1er Etage') echo 'selected'; ?>>1er Etage</option>
                 <option value="2eme Etage" <?php if ($changement['etage'] == '2eme Etage') echo 'selected'; ?>>2eme Etage</option>
@@ -78,7 +78,6 @@ if (isset($_GET["id"]) && !empty($_GET['id'])) {
                 <option value="6eme Etage" <?php if ($changement['etage'] == '6eme Etage') echo 'selected'; ?>>6eme Etage</option>
                 <option value="7eme Etage" <?php if ($changement['etage'] == '7eme Etage') echo 'selected'; ?>>7eme Etage</option>
                 <option value="8eme Etage" <?php if ($changement['etage'] == '8eme Etage') echo 'selected'; ?>>8eme Etage</option>
-
             </select>
             <label for="position">Position</label>
             <select name="position" id="position" required>
@@ -86,7 +85,6 @@ if (isset($_GET["id"]) && !empty($_GET['id'])) {
                 <option value="Sud" <?php if ($changement['position'] == 'Sud') echo 'selected'; ?>>Sud</option>
                 <option value="Est" <?php if ($changement['position'] == 'Est') echo 'selected'; ?>>Est</option>
                 <option value="Ouest" <?php if ($changement['position'] == 'Ouest') echo 'selected'; ?>>Ouest</option>
-
             </select>
             <label for="prix_ampoule">Prix de l'ampoule TTC</label>
             <input type="text" name="prix_ampoule" required value="<?= $changement['prix_ampoule'] ?>">
@@ -97,9 +95,8 @@ if (isset($_GET["id"]) && !empty($_GET['id'])) {
                     <a href="historique.php"><span>Retour</span></a>
                 </button>
             </div>
-
+        </div>
     </form> <br>
-
 </body>
 
 </html>
