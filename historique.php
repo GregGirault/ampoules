@@ -91,7 +91,6 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);  // Cette ligne récupère tous 
 
 require_once("close.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
